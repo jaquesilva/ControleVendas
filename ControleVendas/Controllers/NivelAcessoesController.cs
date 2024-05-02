@@ -10,22 +10,22 @@ using ControleVendas.Models;
 
 namespace ControleVendas.Controllers
 {
-    public class ClientesController : Controller
+    public class NivelAcessoesController : Controller
     {
         private readonly ControleVendasContext _context;
 
-        public ClientesController(ControleVendasContext context)
+        public NivelAcessoesController(ControleVendasContext context)
         {
             _context = context;
         }
 
-        // GET: Clientes
+        // GET: NivelAcessoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cliente.ToListAsync());
+            return View(await _context.NivelAcesso.ToListAsync());
         }
 
-        // GET: Clientes/Details/5
+        // GET: NivelAcessoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace ControleVendas.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente
-                .FirstOrDefaultAsync(m => m.ClienteID == id);
-            if (cliente == null)
+            var nivelAcesso = await _context.NivelAcesso
+                .FirstOrDefaultAsync(m => m.NivelAcessoID == id);
+            if (nivelAcesso == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(nivelAcesso);
         }
 
-        // GET: Clientes/Create
+        // GET: NivelAcessoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Clientes/Create
+        // POST: NivelAcessoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClienteID,NivelAcessoID,Nome,Cpf,Email,Senha,Telefone,Endereco,DataCadastro")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("NivelAcessoID,NomeNivelAcesso")] NivelAcesso nivelAcesso)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cliente);
+                _context.Add(nivelAcesso);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(cliente);
+            return View(nivelAcesso);
         }
 
-        // GET: Clientes/Edit/5
+        // GET: NivelAcessoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace ControleVendas.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente.FindAsync(id);
-            if (cliente == null)
+            var nivelAcesso = await _context.NivelAcesso.FindAsync(id);
+            if (nivelAcesso == null)
             {
                 return NotFound();
             }
-            return View(cliente);
+            return View(nivelAcesso);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: NivelAcessoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClienteID,NivelAcessoID,Nome,Cpf,Email,Senha,Telefone,Endereco,DataCadastro")] Cliente cliente)
+        public async Task<IActionResult> Edit(int? id, [Bind("NivelAcessoID,NomeNivelAcesso")] NivelAcesso nivelAcesso)
         {
-            if (id != cliente.ClienteID)
+            if (id != nivelAcesso.NivelAcessoID)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace ControleVendas.Controllers
             {
                 try
                 {
-                    _context.Update(cliente);
+                    _context.Update(nivelAcesso);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteExists(cliente.ClienteID))
+                    if (!NivelAcessoExists(nivelAcesso.NivelAcessoID))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace ControleVendas.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(cliente);
+            return View(nivelAcesso);
         }
 
-        // GET: Clientes/Delete/5
+        // GET: NivelAcessoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,34 +124,34 @@ namespace ControleVendas.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente
-                .FirstOrDefaultAsync(m => m.ClienteID == id);
-            if (cliente == null)
+            var nivelAcesso = await _context.NivelAcesso
+                .FirstOrDefaultAsync(m => m.NivelAcessoID == id);
+            if (nivelAcesso == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(nivelAcesso);
         }
 
-        // POST: Clientes/Delete/5
+        // POST: NivelAcessoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            var cliente = await _context.Cliente.FindAsync(id);
-            if (cliente != null)
+            var nivelAcesso = await _context.NivelAcesso.FindAsync(id);
+            if (nivelAcesso != null)
             {
-                _context.Cliente.Remove(cliente);
+                _context.NivelAcesso.Remove(nivelAcesso);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClienteExists(int id)
+        private bool NivelAcessoExists(int? id)
         {
-            return _context.Cliente.Any(e => e.ClienteID == id);
+            return _context.NivelAcesso.Any(e => e.NivelAcessoID == id);
         }
     }
 }

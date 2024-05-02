@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ControleVendas.Models
 {
@@ -6,7 +7,8 @@ namespace ControleVendas.Models
     {
         public int ClienteID { get; set; }
 
-        public int NivelAcessoID { get; set; }
+        [Display(Name = "Nível de Acesso")]
+        public int NivelAcessoID { get; set; } = 3;
 
         public string? Nome { get; set; }
 
@@ -16,12 +18,16 @@ namespace ControleVendas.Models
         [Display(Name = "E-mail")]
         public string? Email { get; set; }
 
+        [StringLength(10, MinimumLength = 6, ErrorMessage = "Máximo de 10, mínimo de 6 caracteres")]
+        public string? Senha { get; set; }
+
         public string? Telefone { get; set; }
 
         [Display(Name = "Endereço")]
         public string? Endereco { get; set; }
 
-        [Display(Name = "Data Cadastro")]
+        [Display(Name = "Data do Cadastro")]
         public DateTime DataCadastro { get; set; }
+
     }
 }
