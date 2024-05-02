@@ -6,7 +6,7 @@ namespace ControleVendas.Models
     {
         public int ClienteID { get; set; }
 
-        public int NivelAcessoID { get; set; } = 3;
+        public int NivelAcessoID { get; set; }
 
         public string? Nome { get; set; }
 
