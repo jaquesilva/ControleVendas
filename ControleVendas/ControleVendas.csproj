@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CSS\**" />
     <Compile Remove="NewFolder\**" />
+    <Content Remove="CSS\**" />
     <Content Remove="NewFolder\**" />
+    <EmbeddedResource Remove="CSS\**" />
     <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="CSS\**" />
     <None Remove="NewFolder\**" />
   </ItemGroup>
 
