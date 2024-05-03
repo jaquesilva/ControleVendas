@@ -1,11 +1,15 @@
-﻿using NuGet.Protocol.Core.Types;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ControleVendas.Models
 {
-    public class Login
+    public class Administrador
     {
-        public int? LoginID { get; set; }
+        public int? AdministradorID { get; set; }
+
+        public string? Nome { get; set; }
+
+        [Display(Name = "CPF")]
+        public string? Cpf { get; set; }
 
         [Display(Name = "E-mail")]
         [Required(ErrorMessage = "O campo de e-mail é obrigatório.")]
@@ -16,6 +20,5 @@ namespace ControleVendas.Models
         [StringLength(10, MinimumLength = 6, ErrorMessage = "Máximo de 10, mínimo de 6 caracteres")]
         [DataType(DataType.Password)]
         public string? Senha { get; set; }
-
     }
 }

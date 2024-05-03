@@ -18,5 +18,7 @@ namespace ControleVendas.Data
         public DbSet<ControleVendas.Models.NivelAcesso> NivelAcesso { get; set; } = default!;
         public DbSet<ControleVendas.Models.Login> Login { get; set; } = default!;
         public DbSet<ControleVendas.Models.Produto> Produto { get; set; } = default!;
+        public DbSet<ControleVendas.Models.Venda> Venda { get; set; } = default!;
+        public DbSet<ControleVendas.Models.Administrador> Administrador { get; set; } = default!;
     }
 }
