@@ -16,5 +16,6 @@ namespace ControleVendas.Data
 
         public DbSet<ControleVendas.Models.Cliente> Cliente { get; set; } = default!;
         public DbSet<ControleVendas.Models.NivelAcesso> NivelAcesso { get; set; } = default!;
+        public DbSet<ControleVendas.Models.Login> Login { get; set; } = default!;
     }
 }
